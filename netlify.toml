@@ -1,0 +1,11 @@
+[build]
+  # Repository root. "dist" is the build output, not the project source.
+  base = ""
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+# Single-page app: serve index.html for client-side routes (react-router).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
