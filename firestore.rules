@@ -1,0 +1,44 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Deny access to any collection not explicitly matched
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // User profiles: users/{userId}
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      
+      allow create: if isOwner(userId)
+                    && request.resource.data.uid == userId;
+
+      allow update: if isOwner(userId)
+                    && request.resource.data.uid == resource.data.uid;
+
+      allow delete: if isOwner(userId);
+
+      // User conversations: users/{userId}/conversations/{conversationId}
+      match /conversations/{conversationId} {
+        allow read, write: if isOwner(userId);
+
+        // Messages: users/{userId}/conversations/{conversationId}/messages/{messageId}
+        match /messages/{messageId} {
+          allow read, write: if isOwner(userId);
+        }
+      }
+    }
+  }
+}
+

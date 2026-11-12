@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #FFFFFF;
+    --bg-sidebar: #F5F5F5;
+    --bg-chat: #FFFFFF;
+    --bg-input: #F4F4F4;
+    --bg-card: #FAFAFA;
+    --border-color: #E5E5E5;
+    --text-primary: #080808;
+    --text-secondary: #666666;
+    --btn-bg: #080808;
+    --btn-text: #FFFFFF;
+  }
+
+  .dark {
+    --bg-main: #080808;
+    --bg-sidebar: #111111;
+    --bg-chat: #080808;
+    --bg-input: #171717;
+    --bg-card: #151515;
+    --border-color: #303030;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A3A3A3;
+    --btn-bg: #FFFFFF;
+    --btn-text: #000000;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+/* Custom monochrome scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #303030;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #525252;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4D4D4;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A3A3A3;
+}
+
+/* Code block highlight styling - strictly monochrome */
+pre code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+}
+
+.hljs {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+.hljs-keyword, .hljs-selector-tag, .hljs-subst {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.hljs-string, .hljs-title, .hljs-section, .hljs-attribute, .hljs-literal, .hljs-template-tag, .hljs-template-variable, .hljs-type, .hljs-addition {
+  font-style: italic;
+}
+
+.hljs-comment, .hljs-quote, .hljs-deletion, .hljs-meta {
+  opacity: 0.6;
+}
+
